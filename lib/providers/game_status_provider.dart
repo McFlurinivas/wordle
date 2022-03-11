@@ -69,6 +69,10 @@ class GameStateNotifier extends StateNotifier<GameState> {
       }
       if(!state.validWords.contains(currentAttempt)){
         print("Not in valid words list");
+        currentAttempt = currentAttempt.substring(0, currentAttempt.length - 5);
+        attempts[state.attempted] = currentAttempt;
+        state = state.clone(attempts: attempts);
+        return;
       }
       state = state.clone(attempted: state.attempted + 1);
     } else if (key == "<") {
